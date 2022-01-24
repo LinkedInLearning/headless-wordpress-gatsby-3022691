@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-and-word-press",
+  "name": "gatsby-and-wp",
   "version": "1.0.0",
   "private": true,
-  "description": "Gatsby and WordPress",
+  "description": "Gatsby and WP",
   "author": "Morten Rand-Hendriksen",
   "keywords": [
     "gatsby"
@@ -17,7 +17,9 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@wordpress/block-library": "^6.0.18",
     "gatsby": "^4.5.4",
+    "gatsby-awesome-pagination": "^0.3.8",
     "gatsby-plugin-image": "^2.5.2",
     "gatsby-plugin-manifest": "^4.5.2",
     "gatsby-plugin-mdx": "^3.5.2",
@@ -29,6 +31,8 @@
     "gatsby-source-wordpress": "^6.5.2",
     "gatsby-transformer-sharp": "^4.5.0",
     "postcss": "^8.4.5",
+    "postcss-preset-env": "^7.2.3",
+    "prettier": "^2.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0"
