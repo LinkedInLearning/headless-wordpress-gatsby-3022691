@@ -30,7 +30,11 @@ const Layout = ({ children }) => {
   `)
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.defaultTitle} />
+      <Header
+        siteTitle={
+          data.wp.generalSettings.title || data.site.siteMetadata.defaultTitle
+        }
+      />
       <div
         style={{
           margin: `0 auto`,
