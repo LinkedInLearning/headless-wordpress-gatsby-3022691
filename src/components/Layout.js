@@ -16,6 +16,11 @@ import Footer from "./Footer"
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
       wp {
         generalSettings {
           title
@@ -25,7 +30,7 @@ const Layout = ({ children }) => {
   `)
   return (
     <>
-      <Header siteTitle={data.wp.generalSettings.title || `Title`} />
+      <Header siteTitle={data.site.siteMetadata.title} />
       <div
         style={{
           margin: `0 auto`,
