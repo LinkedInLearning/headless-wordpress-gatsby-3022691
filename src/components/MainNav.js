@@ -21,9 +21,6 @@ const MenuLoop = ({ menuItems }) => {
             <UniversalLink to={menuItem.path} activeClassName="current-page">
               {menuItem.title}
             </UniversalLink>
-            {menuItem.routes.length > 0 && (
-              <MenuLoop menuItems={menuItem.routes}></MenuLoop>
-            )}
           </li>
         )
       })}
