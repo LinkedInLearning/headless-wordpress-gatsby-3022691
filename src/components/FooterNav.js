@@ -7,8 +7,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import UniversalLink from "../utils/UniversalLink"
 import { FlatListToHierarchical } from "../utils/FlatListToHierarchical"
 
-import * as styles from "./mainNav.module.css"
-
 const MenuLoop = ({ menuItems }) => {
   return (
     <ul>
@@ -31,15 +29,12 @@ const MenuLoop = ({ menuItems }) => {
   )
 }
 
-const MainNav = () => {
+const FooterNav = () => {
   const wpMenu = useStaticQuery(graphql`
     {
       allWpMenuItem(
         sort: { fields: order, order: ASC }
-        filter: {
-          menu: { node: { slug: { eq: "all-pages" } } }
-          parentDatabaseId: { eq: 0 }
-        }
+        filter: { menu: { node: { slug: { eq: "all-pages" } } } }
       ) {
         nodes {
           id
@@ -60,10 +55,10 @@ const MainNav = () => {
   console.log("headerMenu: ", headerMenu)
 
   return (
-    <nav className={styles.mainnav}>
+    <nav style={{ textAlign: "left" }}>
       {headerMenu.length > 0 && <MenuLoop menuItems={headerMenu}></MenuLoop>}
     </nav>
   )
 }
 
-export default MainNav
+export default FooterNav
