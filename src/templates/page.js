@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import * as styles from "./page.module.css"
 import Layout from "../components/Layout"
@@ -17,6 +18,15 @@ const Page = ({ data }) => {
         article
       />
       <article className={styles.article}>
+        {page.featuredImage && (
+          <figure className={styles.featimg}>
+            <GatsbyImage
+              image={getImage(page.featuredImage.node.localFile)}
+              alt={page.featuredImage.node.altText}
+            />
+          </figure>
+        )}
+
         <h1>{page.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: page.content }} />
       </article>
@@ -32,6 +42,20 @@ export const query = graphql`
       title
       content
       uri
+      featuredImage {
+        node {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 1360
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
+        }
+      }
     }
   }
 `
