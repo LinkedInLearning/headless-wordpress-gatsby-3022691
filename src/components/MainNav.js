@@ -16,7 +16,7 @@ const MenuLoop = ({ menuItems }) => {
         return (
           <li
             key={index}
-            className={menuItem.routes.length > 0 ? "has-submenu" : undefined}
+            className={menuItem.children.length > 0 ? "has-submenu" : undefined}
           >
             <UniversalLink to={menuItem.path} activeClassName="current-page">
               {menuItem.title}
@@ -39,8 +39,7 @@ const MainNav = () => {
           id
           title: label
           path
-          target
-          parent: parentId
+          parentId
         }
       }
     }
@@ -49,8 +48,8 @@ const MainNav = () => {
 
   const headerMenu = FlatListToHierarchical(wpMenu.allWpMenuItem.nodes, {
     idKey: "id",
-    childrenKey: "routes",
-    parentKey: "parent",
+    childrenKey: "children",
+    parentKey: "parentId",
   })
   console.log("headerMenu: ", headerMenu)
 
