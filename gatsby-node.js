@@ -29,6 +29,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             databaseId
             uri
           }
+          next {
+            databaseId
+          }
+          previous {
+            databaseId
+          }
         }
       }
     }
@@ -62,6 +68,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         // Data passed to context is available
         // in page queries as GraphQL variables.
         databaseId: post.node.databaseId,
+        nextId: post.next ? post.next.databaseId : null,
+        prevId: post.previous ? post.previous.databaseId : null,
       },
     })
   })

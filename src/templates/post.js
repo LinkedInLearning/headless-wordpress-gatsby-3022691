@@ -61,7 +61,7 @@ const Post = ({ data }) => {
 export default Post
 
 export const query = graphql`
-  query ($databaseId: Int!) {
+  query ($databaseId: Int!, $nextId: Int, $prevId: Int) {
     currentPost: wpPost(databaseId: { eq: $databaseId }) {
       date
       databaseId
@@ -99,6 +99,14 @@ export const query = graphql`
           }
         }
       }
+    }
+    nextPost: wpPost(databaseId: { eq: $nextId }) {
+      title
+      uri
+    }
+    prevPost: wpPost(databaseId: { eq: $prevId }) {
+      title
+      uri
     }
   }
 `
