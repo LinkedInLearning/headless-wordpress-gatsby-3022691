@@ -6,6 +6,7 @@ import * as styles from "./single.module.css"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Catlist from "../components/Catlist"
+import PostNav from "../components/PostNav"
 
 const Post = ({ data }) => {
   const post = data.currentPost
@@ -54,6 +55,7 @@ const Post = ({ data }) => {
           ])}
         </div>
       </article>
+      <PostNav prevPost={data.prevPost} nextPost={data.nextPost} />
     </Layout>
   )
 }
