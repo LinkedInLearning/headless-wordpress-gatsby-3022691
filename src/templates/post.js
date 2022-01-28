@@ -1,11 +1,10 @@
 import * as React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import { GatsbyImage, getImage, getSrc } from "gatsby-plugin-image"
 
 import * as styles from "./single.module.css"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
-import Catlist from "../components/Catlist"
 
 const Post = ({ data }) => {
   const post = data.currentPost
@@ -30,7 +29,6 @@ const Post = ({ data }) => {
             />
           </figure>
         )}
-        <Catlist postObject={post} />
         <h1 className={styles.article__title}>{post.title}</h1>
         <div className={styles.article__meta}>
           by {post.author.node.name}. Published on{" "}
@@ -44,15 +42,6 @@ const Post = ({ data }) => {
           className={styles.article__content}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
-        <div>
-          Tagged:{" "}
-          {post.tags.nodes.map((tag, index) => [
-            index > 0 && ", ",
-            <Link key={index} to={tag.link}>
-              {tag.name}
-            </Link>,
-          ])}
-        </div>
       </article>
     </Layout>
   )
@@ -70,18 +59,6 @@ export const query = graphql`
       uri
       author {
         node {
-          name
-        }
-      }
-      categories {
-        nodes {
-          link
-          name
-        }
-      }
-      tags {
-        nodes {
-          link
           name
         }
       }
