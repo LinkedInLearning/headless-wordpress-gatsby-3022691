@@ -6,27 +6,27 @@ import * as styles from "./single.module.css"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 
-const Page = ({ data }) => {
-  const page = data.wpPage
+const Post = ({ data }) => {
+  const post = data.currentPost
   return (
     <Layout>
       <Seo
-        title={page.title}
+        title={post.title}
         image="/logo.png"
-        pathname={page.uri}
+        pathname={post.uri}
         // Boolean indicating whether this is an article:
         article
       />
       <article className={styles.article}>
-        {page.featuredImage && (
+        {post.featuredImage && (
           <figure className={styles.featimg}>
             <GatsbyImage
-              image={getImage(page.featuredImage.node.localFile)}
-              alt={page.featuredImage.node.altText}
+              image={getImage(post.featuredImage.node.localFile)}
+              alt={post.featuredImage.node.altText}
             />
           </figure>
         )}
-        <h1 className={styles.article__title}>{page.title}</h1>
+        <h1 className={styles.article__title}>{post.title}</h1>
         <div className={styles.article__meta}>
           by {post.author.node.name}. Published on{" "}
           {new Date(post.date).toLocaleDateString("en-US", {
@@ -37,18 +37,20 @@ const Page = ({ data }) => {
         </div>
         <div
           className={styles.article__content}
-          dangerouslySetInnerHTML={{ __html: page.content }}
+          dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </article>
     </Layout>
   )
 }
 
-export default Page
+export default Post
 
 export const query = graphql`
   query ($databaseId: Int!) {
-    wpPage(databaseId: { eq: $databaseId }) {
+    currentPost: wpPost(databaseId: { eq: $databaseId }) {
+      date
+      databaseId
       title
       content
       uri
@@ -57,7 +59,6 @@ export const query = graphql`
           name
         }
       }
-      date
       featuredImage {
         node {
           altText
