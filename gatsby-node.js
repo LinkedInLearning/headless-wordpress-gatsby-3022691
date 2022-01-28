@@ -102,7 +102,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       createPage, // The Gatsby `createPage` function
       items: category.posts.nodes, // An array of objects
       itemsPerPage: 4, // How many items you want per page
-      pathPrefix: category.uri, // Creates pages like `/blog`, `/blog/2`, etc
+      pathPrefix: category.uri.slice(0, -1), // Creates pages like `/blog`, `/blog/2`, etc
       component: path.resolve(`./src/templates/categories.js`), // Just like `createPage()`
       context: {
         catId: category.databaseId,
