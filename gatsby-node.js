@@ -37,6 +37,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
+      catQuery: allWpCategory {
+        nodes {
+          databaseId
+          uri
+          name
+          posts {
+            nodes {
+              databaseId
+            }
+          }
+        }
+      }
     }
   `)
   if (queryResult.errors) {
@@ -81,5 +93,21 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     itemsPerPage: 4, // How many items you want per page
     pathPrefix: "/posts", // Creates pages like `/blog`, `/blog/2`, etc
     component: path.resolve(`./src/templates/posts-index.js`), // Just like `createPage()`
+  })
+
+  // Create your paginated category indexes
+  const categories = queryResult.data.catQuery.nodes
+  categories.map(category => {
+    paginate({
+      createPage, // The Gatsby `createPage` function
+      items: category.posts.nodes, // An array of objects
+      itemsPerPage: 4, // How many items you want per page
+      pathPrefix: category.uri, // Creates pages like `/blog`, `/blog/2`, etc
+      component: path.resolve(`./src/templates/categories.js`), // Just like `createPage()`
+      context: {
+        catId: category.databaseId,
+        catName: category.name,
+      },
+    })
   })
 }
