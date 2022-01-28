@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, getSrc } from "gatsby-plugin-image"
 
 import * as styles from "./single.module.css"
 import Layout from "../components/Layout"
@@ -8,11 +8,14 @@ import Seo from "../components/Seo"
 
 const Post = ({ data }) => {
   const post = data.currentPost
+  const seoImageSrc = post.featuredImage
+    ? getSrc(post.featuredImage.node.localFile)
+    : `/logo.png`
   return (
     <Layout>
       <Seo
         title={post.title}
-        image="/logo.png"
+        image={seoImageSrc}
         pathname={post.uri}
         // Boolean indicating whether this is an article:
         article

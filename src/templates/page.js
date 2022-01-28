@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, getSrc } from "gatsby-plugin-image"
 
 import * as styles from "./single.module.css"
 import Layout from "../components/Layout"
@@ -8,11 +8,14 @@ import Seo from "../components/Seo"
 
 const Page = ({ data }) => {
   const page = data.wpPage
+  const seoImageSrc = page.featuredImage
+    ? getSrc(page.featuredImage.node.localFile)
+    : `/logo.png`
   return (
     <Layout>
       <Seo
         title={page.title}
-        image="/logo.png"
+        image={seoImageSrc}
         pathname={page.uri}
         // Boolean indicating whether this is an article:
         article
@@ -28,8 +31,8 @@ const Page = ({ data }) => {
         )}
         <h1 className={styles.article__title}>{page.title}</h1>
         <div className={styles.article__meta}>
-          by {post.author.node.name}. Published on{" "}
-          {new Date(post.date).toLocaleDateString("en-US", {
+          by {page.author.node.name}. Published on{" "}
+          {new Date(page.date).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
             year: "numeric",
