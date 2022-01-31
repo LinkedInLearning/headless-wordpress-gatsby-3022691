@@ -17,7 +17,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "@wordpress/block-library": "^6.0.18",
+    "@wordpress/block-library": "^6.1.0",
     "gatsby": "^4.5.4",
     "gatsby-awesome-pagination": "^0.3.8",
     "gatsby-plugin-image": "^2.5.2",
