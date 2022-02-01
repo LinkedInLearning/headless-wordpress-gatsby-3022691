@@ -1,0 +1,26 @@
+.postnav {
+  margin: 3rem auto;
+  display: flex;
+  gap: 1rem;
+}
+
+.postnav a {
+  width: 50%;
+  padding: 1rem;
+  border: 1px solid black;
+  text-decoration: none;
+}
+
+.postnav a:first-of-type {
+  text-align: right;
+}
+
+.postnav__head {
+  font-size: 80%;
+}
+
+.postnav__title {
+  font-size: 110%;
+  font-weight: bold;
+  text-decoration: underline;
+}

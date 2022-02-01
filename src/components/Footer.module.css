@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+  background-color: rebeccapurple;
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.footer a {
+  color: white;
+}
